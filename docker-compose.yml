@@ -11,4 +11,14 @@ services:
       - "4200:4200"
     volumes:
       - /app/node_modules
+      - /app/.angular
       - ./web:/app
+  database:
+    build: database-main/
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin_123
+    volumes:
+    - db-data:/var/lib/mysql
+volumes:
+  db-data:
