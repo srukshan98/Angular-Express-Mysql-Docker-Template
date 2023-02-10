@@ -1,0 +1,14 @@
+version: '3'
+services:
+  api:
+    build: api/
+    volumes:
+      - /app/node_modules
+      - ./api:/app
+  web:
+    build: web/
+    ports:
+      - "4200:4200"
+    volumes:
+      - /app/node_modules
+      - ./web:/app
