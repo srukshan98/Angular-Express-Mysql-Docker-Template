@@ -1,11 +1,17 @@
 version: '3'
 services:
   api:
+    image: temp-api
     build: api/
     volumes:
       - /app/node_modules
       - ./api:/app
+    environment:
+      - API_PORT=3000
+    ports:
+      - "3000:3000"
   web:
+    image: temp-web
     build: web/
     ports:
       - "4200:4200"
@@ -13,7 +19,10 @@ services:
       - /app/node_modules
       - /app/.angular
       - ./web:/app
+    environment:
+      - WEB_PORT=4200
   database:
+    image: temp-db
     build: database-main/
     restart: always
     environment:
